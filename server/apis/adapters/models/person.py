@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 from pydantic import BaseModel
 from typing import List
 
@@ -18,7 +18,7 @@ class Person(BaseModel):
     id: int
     first_name: str
     name: str
-    birthdate: datetime.date
+    birthdate: date
     gender: Gender
     emails: List["Email"]
     cellphones: List["Cellphone"]

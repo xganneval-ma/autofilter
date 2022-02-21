@@ -1,6 +1,6 @@
 from typing import List, Type, TypeVar
 from dataclasses import dataclass
-from autofilter.query_filter import QueryFilter
+from ..autofilter.query_filter import QueryFilter
 from sqlalchemy.orm import Session
 
 
@@ -54,7 +54,7 @@ class Datalayer:
         return new_item
 
     def get_one(self, id: int) -> Type[T]:
-        return self.session.query(self.entity_cls).filter(self.entity_cls.id == id)
+        return self.session.query(self.entity_cls).filter(self.entity_cls.id == id).one()
 
     def get_all(self, options: QueryOptions) -> Collection:
         query = self.session.query(self.entity_cls)
