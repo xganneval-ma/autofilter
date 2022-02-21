@@ -1,6 +1,6 @@
 from datetime import date
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 
 class Gender(BaseModel):
@@ -14,14 +14,13 @@ class Gender(BaseModel):
 class Person(BaseModel):
     class Config:
         orm_mode = True
-
     id: int
     first_name: str
     name: str
     birthdate: date
     gender: Gender
     emails: List["Email"]
-    cellphones: List["Cellphone"]
+    cellphones: Optional[List["Cellphone"]]
 
 
 class Address(BaseModel):
@@ -32,12 +31,12 @@ class Address(BaseModel):
     type: str
     value: str
     is_public: bool
-    owner: "Person"
 
 
 class Email(Address):
-    owner: "Person"
+    pass
 
 
 class Cellphone(Address):
-    owner: "Person"
+    pass
+Person.update_forward_refs()
