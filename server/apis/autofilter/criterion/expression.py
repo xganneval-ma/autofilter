@@ -34,7 +34,7 @@ class OrExpression(Expression):
 
 @is_operator("bool")
 class NotExpression(Expression):
-    type: str
+    type = "Not"
     criterion: Criterion
 
     def __init__(self, criterion):
