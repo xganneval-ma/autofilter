@@ -28,7 +28,7 @@ class Operator(Criterion):
 class Equal(Operator):
     type = "Eq"
 
-    def _execute(self, value, field, *args, **kwargs):
+    def _execute(self, field, value, *args, **kwargs):
         return field == value
 
 
@@ -36,7 +36,7 @@ class Equal(Operator):
 class LowerThan(Operator):
     type = "Lt"
 
-    def _execute(self, value, field, *args, **kwargs):
+    def _execute(self, field, value, *args, **kwargs):
         return field < value
 
 
@@ -44,7 +44,7 @@ class LowerThan(Operator):
 class LowerThanOrEq(Operator):
     type = "Lte"
 
-    def _execute(self, value, field, *args, **kwargs):
+    def _execute(self, field, value, *args, **kwargs):
         return field <= value
 
 
@@ -52,7 +52,7 @@ class LowerThanOrEq(Operator):
 class GreaterThan(Operator):
     type = "Gt"
 
-    def _execute(self, value, field, *args, **kwargs):
+    def _execute(self, field, value, *args, **kwargs):
         return field > value
 
 
@@ -60,15 +60,15 @@ class GreaterThan(Operator):
 class GreaterThan(Operator):
     type = "Gte"
 
-    def _execute(self, value, field, *args, **kwargs):
+    def _execute(self, field, value, *args, **kwargs):
         return field >= value
 
 
 @is_operator("bool")
-class GreaterThan(Operator):
+class Like(Operator):
     type = "Like"
 
-    def _execute(self, value: str, field, *args, **kwargs):
+    def _execute(self, field, value, *args, **kwargs):
         if value.startswith("%") and value.endswith("%"):
             return value[1:-1] in field
         if value.startswith("%"):

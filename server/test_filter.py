@@ -3,14 +3,14 @@ from apis.autofilter.query_filter import QueryFilter
 from ast import parse
 
 filters = [
-    # "Eq(False, False)",
-    # "Eq(True, False)",
-    # "Eq('toto', 'toto')",
-    # "Eq(False, Eq('toto', 'tutu'))",
-    # "Eq(False, Eq(toto, 'tutu'))",
-    # "Lte(15, 56)",
-    # "Lte(56, 15)",
-    "And(10, 20, 30)"
+    "Eq(False, False)",
+    "Eq(True, False)",
+    "Eq('toto', 'toto')",
+    "Eq(False, Eq('toto', 'tutu'))",
+    "Eq(False, Eq(toto, 'tutu'))",
+    "Lte(15, 56)",
+    "Lte(56, 15)",
+    "And(True, False, None)",
 ]
 filter = "Eq(False, 'Eq('toto', 'tutu')')"
 filter = "Eq(False, Eq('toto', 'tutu'))"
