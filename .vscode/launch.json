@@ -10,10 +10,19 @@
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "runserver:app", "--reload"
+                "runserver:app",
+                "--reload"
             ],
             "jinja": true,
             "cwd": "${workspaceFolder}/server"
+        },
+        {
+            "name": "Python: test_filter",
+            "type": "python",
+            "request": "launch",
+            "program": "test_filter.py",
+            "cwd": "${workspaceFolder}/server",
+            "console": "integratedTerminal"
         }
     ]
 }

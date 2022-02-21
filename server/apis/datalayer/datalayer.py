@@ -53,7 +53,9 @@ class Datalayer:
         return new_item
 
     def get_one(self, id: int) -> Type[T]:
-        return self.session.query(self.entity_cls).filter(self.entity_cls.id == id).one()
+        return (
+            self.session.query(self.entity_cls).filter(self.entity_cls.id == id).one()
+        )
 
     def get_all(self, options: QueryOptions) -> Collection:
         query = self.session.query(self.entity_cls)

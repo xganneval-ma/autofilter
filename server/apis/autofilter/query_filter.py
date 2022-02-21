@@ -1,8 +1,11 @@
 from typing import Any, List
-from .base_operator import BaseOperator
+from .criterion import Criterion
+from ast import parse
+
 
 class QueryFilter:
     @classmethod
-    def from_str(cls, value: str, operators: List[BaseOperator]) -> BaseOperator:
-        #on fait des trucs ici
-        return cls()
+    def from_str(cls, value: str, operators: List[Criterion]) -> Criterion:
+        # on fait des trucs ici
+        node = parse(value).body[0].value
+        return Criterion.init_child(node, operators)

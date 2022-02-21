@@ -14,6 +14,7 @@ class Gender(BaseModel):
 class Person(BaseModel):
     class Config:
         orm_mode = True
+
     id: int
     first_name: str
     name: str
@@ -39,4 +40,6 @@ class Email(Address):
 
 class Cellphone(Address):
     pass
+
+
 Person.update_forward_refs()

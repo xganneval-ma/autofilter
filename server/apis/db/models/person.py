@@ -3,14 +3,18 @@ from sqlalchemy.orm import relationship
 
 from ..base import Base
 
+
 def _resolve_email():
-     from .address import Email
-     return Email
+    from .address import Email
+
+    return Email
 
 
 def _resolve_cellphone():
-     from .address import Cellphone
-     return Cellphone
+    from .address import Cellphone
+
+    return Cellphone
+
 
 class Gender(Base):
     __tablename__ = "gender"
@@ -31,4 +35,3 @@ class Person(Base):
 
     emails = relationship(_resolve_email())
     cellphones = relationship(_resolve_cellphone())
-

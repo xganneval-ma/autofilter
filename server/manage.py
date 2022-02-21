@@ -596,6 +596,7 @@ def drop_db():
     Base.metadata.drop_all(bind=engine)
     db.close()
 
+
 def print_one(person):
     print(
         person.id, person.name, person.first_name, person.birthdate, person.gender.value
@@ -618,7 +619,9 @@ def random_person():
         print_one(person)
     except Exception as e:
         print(person.id)
-        import pdb; pdb.set_trace()
+        import pdb
+
+        pdb.set_trace()
     db.close()
 
 
