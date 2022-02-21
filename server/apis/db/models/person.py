@@ -33,5 +33,5 @@ class Person(Base):
     gender_id = Column(Integer, ForeignKey("gender.id"), index=True, nullable=False)
     gender = relationship("Gender")
 
-    emails = relationship(_resolve_email())
+    email = relationship(_resolve_email(), uselist=False)
     cellphones = relationship(_resolve_cellphone())

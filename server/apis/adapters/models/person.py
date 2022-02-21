@@ -20,7 +20,7 @@ class Person(BaseModel):
     name: str
     birthdate: date
     gender: Gender
-    emails: List["Email"]
+    email: "Email"
     cellphones: Optional[List["Cellphone"]]
 
 

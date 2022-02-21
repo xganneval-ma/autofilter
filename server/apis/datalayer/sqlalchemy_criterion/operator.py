@@ -41,7 +41,7 @@ class GreaterThan(operator.GreaterThan):
 
 
 @is_operator("sqlalchemy")
-class Like(operator.GreaterThan):
+class Like(operator.Like):
     type = "Like"
 
     def _execute(self, value: str, field, *args, **kwargs):

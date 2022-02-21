@@ -4,6 +4,7 @@ from .sqlalchemy_criterion import OPERATORS
 
 from ..autofilter.query_filter import QueryFilter
 from sqlalchemy.orm import Session
+from sqlalchemy.inspection import inspect
 
 
 Unset = object()
@@ -16,8 +17,8 @@ class SqlQueryFilter(QueryFilter):
     operators = OPERATORS['sqlalchemy']
 
     def execute(self, query, entity_cls: Type[T], *args, **kwargs):
-        result = self.criterion.execute(entity_cls, *args, **kwargs)
-        if result is not None:
+        if self.criterion is not None:
+            result = self.criterion.execute(entity_cls, *args, **kwargs)
             query = query.filter(result)
         return query
 
@@ -69,7 +70,10 @@ class Datalayer:
         )
 
     def get_all(self, options: QueryOptions) -> Collection:
+        relations = inspect(self.entity_cls).relationships.items()
         query = self.session.query(self.entity_cls)
+        relation_class = [inspect(field).mapper.class_ for name, field in relations]
+        query = query.join(*relation_class)
         query = options.filters.execute(query=query, entity_cls=self.entity_cls)
         # total = query.count()
         query = query.offset(options.offset).limit(options.limit)

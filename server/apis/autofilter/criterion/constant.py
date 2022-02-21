@@ -1,4 +1,4 @@
-from ast import Constant, Name
+from ast import Constant, Name, Attribute
 from typing import Any
 
 from .criterion import Criterion
@@ -27,12 +27,20 @@ class CriterionConstant(Criterion):
 @is_operator("bool")
 class AttributeAcesser(CriterionConstant):
     @classmethod
+    def get_path(cls, node, current_leaf=None):
+        current_leaf = current_leaf or []
+        if isinstance(node, Name):
+            return [node.id] + current_leaf
+        return cls.get_path(node.value, [node.attr] + current_leaf )
+
+    @classmethod
     def from_node(cls, node: Any, operators: Any):
-        return cls(node.id)
+        path = cls.get_path(node)
+        return cls('.'.join(path))
 
     @classmethod
     def match(cls, node, operators):
-        return isinstance(node, Name)
+        return isinstance(node, (Name, Attribute))
 
     def execute(self, *args, **kwargs) -> Any:
         # to redifined

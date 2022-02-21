@@ -30,6 +30,7 @@ class Criterion(ABC):
         for operator in operators:
             if operator.match(node, operators):
                 kls = operator
+                break
         return kls.from_node(node, operators)
 
     def execute_field(cls, value, *args, **kwargs):

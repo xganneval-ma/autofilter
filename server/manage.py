@@ -570,7 +570,7 @@ def get_one_personn():
 
 
 @cli.command()
-def initialize_db():
+def init_db():
     db = SessionLocal()
     Base.metadata.create_all(bind=engine)
     genders = ["Female", "Male", "Other"]
@@ -601,9 +601,8 @@ def print_one(person):
     print(
         person.id, person.name, person.first_name, person.birthdate, person.gender.value
     )
-    print("emails")
-    for email in person.emails:
-        print(email.id, email.value, email.is_public)
+    print("email")
+    print(person.email.id, person.email.type, person.email.value, person.email.is_public)
     print("cellphones")
     for cellphone in person.cellphones:
         print(cellphone.id, cellphone.value, cellphone.is_public)
