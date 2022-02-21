@@ -29,9 +29,9 @@ def read_person(person_id: int, db: Session = Depends(get_db)):
     return item
 
 @app.get("/person/", response_model=list[person.Person])
-def read_persons(offset: int = 0, limit: int = 100, query:str = "", db: Session = Depends(get_db)):
+def read_persons(offset: int = 0, limit: int = 10, q:str = "", db: Session = Depends(get_db)):
     datalayer = Datalayer(db, Person)
-    query_filter = QueryFilter(query)
-    options = QueryOptions(fields=None, offset=offset, filters=query_filter)
+    query_filter = QueryFilter.from_str(q, [])
+    options = QueryOptions(fields=None, offset=offset, filters=query_filter, limit=limit)
     items = datalayer.get_all(options)
     return items

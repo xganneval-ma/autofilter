@@ -14,7 +14,6 @@ M = TypeVar("M")
 class QueryOptions:
     limit: int
     offset: int
-    page_size: int
     filters: QueryFilter
     fields: List[str]
 
@@ -58,12 +57,13 @@ class Datalayer:
 
     def get_all(self, options: QueryOptions) -> Collection:
         query = self.session.query(self.entity_cls)
-        query = options.filters.execute(query)
-        total = query.count()
-        query = query.offset(options.offset).limit(options.page_size)
-        return Collection(
-            items=query.all(),
-            count=total,
-            page_size=options.page_size,
-            offset=options.offset,
-        )
+        # query = options.filters.execute(query)
+        # total = query.count()
+        query = query.offset(options.offset).limit(options.limit)
+        # return Collection(
+        #     items=query.all(),
+        #     count=total,
+        #     page_size=options.page_size,
+        #     offset=options.offset,
+        # )
+        return query.all()
