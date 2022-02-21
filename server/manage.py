@@ -1,8 +1,8 @@
 import click
 import random
-from server.db.models.person import Person, Gender
-from server.db.models.address import Cellphone, Email
-from server.db.base import SessionLocal, Base, engine
+from apis.db.models.person import Person, Gender
+from apis.db.models.address import Cellphone, Email
+from apis.db.base import SessionLocal, Base, engine
 from faker import Faker
 
 
