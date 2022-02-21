@@ -1,5 +1,5 @@
 from . import is_operator
-from autofilter.criterion import operator
+from ...autofilter.criterion import operator
 
 
 @is_operator("sqlalchemy")

@@ -1,7 +1,7 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
 
-from ..autofilter.query_filter import QueryFilter
+from ..datalayer.datalayer import SqlQueryFilter
 
 from .models import person
 from ..datalayer import Datalayer, QueryOptions
@@ -34,7 +34,7 @@ def read_persons(
     offset: int = 0, limit: int = 10, q: str = "", db: Session = Depends(get_db)
 ):
     datalayer = Datalayer(db, Person)
-    query_filter = QueryFilter.from_str(q, [])
+    query_filter = SqlQueryFilter.from_str(q)
     options = QueryOptions(
         fields=None, offset=offset, filters=query_filter, limit=limit
     )

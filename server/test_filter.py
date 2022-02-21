@@ -1,6 +1,8 @@
 from apis.autofilter.criterion import OPERATORS
-from apis.autofilter.query_filter import QueryFilter
+from apis.autofilter.query_filter import BoolQueryFilter
 from ast import parse
+
+# from apis.autofilter.criterion.criterion import Criterion
 
 filters = [
     "Eq(False, False)",
@@ -12,13 +14,8 @@ filters = [
     "Lte(56, 15)",
     "And(True, False, None)",
 ]
-filter = "Eq(False, 'Eq('toto', 'tutu')')"
-filter = "Eq(False, Eq('toto', 'tutu'))"
-filter = "Eq(False, Eq(toto, 'tutu'))"
-# filter = "Lte(15, 56)"
-# node = parse(filter).body[0]
-# test = Equal.from_node(node)
-# print(test.execute())
+
 for filter in filters:
-    query_filter = QueryFilter.from_str(filter, OPERATORS["bool"])
+    # node = parse(filter).body[0].value
+    query_filter = BoolQueryFilter.from_str(filter)
     print(filter, ":", query_filter.execute())

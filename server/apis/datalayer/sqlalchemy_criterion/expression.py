@@ -1,6 +1,6 @@
 from operator import and_
 from typing import Any, List
-from autofilter.criterion import expression
+from ...autofilter.criterion import expression
 from . import is_operator
 from sqlalchemy import and_, or_, not_
 

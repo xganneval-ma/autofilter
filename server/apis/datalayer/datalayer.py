@@ -1,5 +1,7 @@
 from typing import List, Type, TypeVar
 from dataclasses import dataclass
+from .sqlalchemy_criterion import OPERATORS
+
 from ..autofilter.query_filter import QueryFilter
 from sqlalchemy.orm import Session
 
@@ -9,6 +11,15 @@ Unset = object()
 T = TypeVar("T")
 M = TypeVar("M")
 
+
+class SqlQueryFilter(QueryFilter):
+    operators = OPERATORS['sqlalchemy']
+
+    def execute(self, query, entity_cls: Type[T], *args, **kwargs):
+        result = self.criterion.execute(entity_cls, *args, **kwargs)
+        if result is not None:
+            query = query.filter(result)
+        return query
 
 @dataclass
 class QueryOptions:
@@ -59,7 +70,7 @@ class Datalayer:
 
     def get_all(self, options: QueryOptions) -> Collection:
         query = self.session.query(self.entity_cls)
-        # query = options.filters.execute(query)
+        query = options.filters.execute(query=query, entity_cls=self.entity_cls)
         # total = query.count()
         query = query.offset(options.offset).limit(options.limit)
         # return Collection(
