@@ -32,6 +32,7 @@ class Address(BaseModel):
     type: str
     value: str
     is_public: bool
+    owner_id: int
 
 
 class Email(Address):
