@@ -70,13 +70,14 @@ class Datalayer:
         )
 
     def get_all(self, options: QueryOptions) -> Collection:
-        relations = inspect(self.entity_cls).relationships.items()
         query = self.session.query(self.entity_cls)
+        relations = inspect(self.entity_cls).relationships.items()
         relation_class = [inspect(field).mapper.class_ for name, field in relations]
         query = query.join(*relation_class)
-        query = options.filters.execute(query=query, entity_cls=self.entity_cls)
+        if options.filters.criterion:
+            query = options.filters.execute(query=query, entity_cls=self.entity_cls)
         # total = query.count()
-        query = query.offset(options.offset).limit(options.limit)
+        query = query.limit(options.limit)
         # return Collection(
         #     items=query.all(),
         #     count=total,

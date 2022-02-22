@@ -1,4 +1,3 @@
-
 from fastapi import Depends, FastAPI
 from sqlalchemy.orm import Session
 
@@ -13,6 +12,7 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+
 def get_db_session():
     session = SessionLocal()
     try:
@@ -20,15 +20,18 @@ def get_db_session():
     finally:
         session.close()
 
+
 @app.get("/person/{person_id}", response_model=person.Person)
 def read_person(person_id: int, session: Session = Depends(get_db_session)):
     return get_one(person_id, Person, session)
 
 
-
 @app.get("/person/", response_model=list[person.Person])
 def read_persons(
-    offset: int = 0, limit: int = 10, q: str = "", session: Session = Depends(get_db_session)
+    offset: int = 0,
+    limit: int = 75,
+    q: str = "",
+    session: Session = Depends(get_db_session),
 ):
     return get_all(Person, offset, limit, q, session)
 
@@ -40,11 +43,12 @@ def read_email(email_id: int, session: Session = Depends(get_db_session)):
 
 @app.get("/email/", response_model=list[person.Email])
 def read_emails(
-    offset: int = 0, limit: int = 10, q: str = "", session: Session = Depends(get_db_session)
+    offset: int = 0,
+    limit: int = 10,
+    q: str = "",
+    session: Session = Depends(get_db_session),
 ):
     return get_all(Email, offset, limit, q, session)
-
-
 
 
 # class PersonView(Ressource):

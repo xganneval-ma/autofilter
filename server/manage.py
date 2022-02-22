@@ -560,7 +560,7 @@ def get_one_personn():
     )
     email = f"{first_name}.{name}@{random.choice(MAIL_DOMAINS)}"
     Email(value=email, owner=person, is_public=random.choice([True, False]))
-    for i in range(0, random.randint(0, 2)):
+    for i in range(0, random.randint(1, 3)):
         Cellphone(
             value=fake.phone_number(),
             owner=person,
