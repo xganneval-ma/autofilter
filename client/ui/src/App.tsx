@@ -1,8 +1,12 @@
+import QueryForm from "./components/QueryForm";
+
 function App() {
   return (
     <main className="section">
       <div className="container">
-        <h1 className="title">autofilter</h1>
+        <h1 className="title">AutoFilter</h1>
+        <QueryForm />
+        <hr />
       </div>
     </main>
   );
