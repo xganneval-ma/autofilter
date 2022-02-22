@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.4"
 services:
   app:
     container_name: autofilter_server
@@ -7,4 +7,5 @@ services:
     volumes:
       - .:/home/autofilter_server
     command: uvicorn runserver:app --host 0.0.0.0 --port 8000
-    network_mode: "host"
+    ports:
+      - 8000:8000
