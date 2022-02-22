@@ -16,7 +16,7 @@ function QueryForm({ updateData }) {
         query = `Eq(first_name, 'Erwan')`;
         break;
       case "emailQuery":
-        query = `Like(email.value, '%Erwan%')`;
+        query = `Like(email.value, '%maelle%')`;
         break;
       case "betweenDate":
         query = `Btw(birthdate, '1990-02-21', '1995-02-21')`;
@@ -75,7 +75,7 @@ function QueryForm({ updateData }) {
             onClick={() => clickHandler("emailQuery")}
           />
           <label className="checkbox" htmlFor="checkbox3">
-            Email containing erwan
+            Email containing maelle
           </label>
         </div>
         <div>
