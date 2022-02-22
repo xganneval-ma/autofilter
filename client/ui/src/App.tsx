@@ -1,15 +1,10 @@
-import "./App.css";
-
 function App() {
   return (
-    <section className="section">
+    <main className="section">
       <div className="container">
-        <h1 className="title">Hello World</h1>
-        <p className="subtitle">
-          My first website with <strong>Bulma</strong>!
-        </p>
+        <h1 className="title">autofilter</h1>
       </div>
-    </section>
+    </main>
   );
 }
 
