@@ -50,10 +50,7 @@ function QueryForm({ updateData }) {
             checked={currentChecked === "allPeople"}
             onClick={() => clickHandler("allPeople")}
           />
-          <label
-            className="checkbox"
-            htmlFor="checkbox1"
-          >
+          <label className="checkbox" htmlFor="checkbox1">
             All people
           </label>
         </div>
@@ -65,10 +62,7 @@ function QueryForm({ updateData }) {
             checked={currentChecked === "firstNameQuery"}
             onClick={() => clickHandler("firstNameQuery")}
           />
-          <label
-            className="checkbox"
-            htmlFor="checkbox2"
-          >
+          <label className="checkbox" htmlFor="checkbox2">
             People named Erwan
           </label>
         </div>
@@ -80,10 +74,7 @@ function QueryForm({ updateData }) {
             checked={currentChecked === "emailQuery"}
             onClick={() => clickHandler("emailQuery")}
           />
-          <label
-            className="checkbox"
-            htmlFor="checkbox3"
-          >
+          <label className="checkbox" htmlFor="checkbox3">
             Email containing erwan
           </label>
         </div>
@@ -92,13 +83,10 @@ function QueryForm({ updateData }) {
             type="checkbox"
             id="checkbox4"
             className="mr-2"
-            onClick={() => clickHandler("birthdayQuery")}
-            checked={currentChecked === "birthdayQuery"}
+            onClick={() => clickHandler("betweenDate")}
+            checked={currentChecked === "betweenDate"}
           />
-          <label
-            className="checkbox"
-            htmlFor="checkbox4"
-          >
+          <label className="checkbox" htmlFor="checkbox4">
             Birthday between 1990-02-21 and 1995-02-21
           </label>
         </div>
@@ -107,14 +95,12 @@ function QueryForm({ updateData }) {
             type="checkbox"
             id="checkbox5"
             className="mr-2"
-            checked={currentChecked === "orBirthdayQuery"}
-            onClick={() => clickHandler("orBirthdayQuery")}
+            checked={currentChecked === "orBetweenDate"}
+            onClick={() => clickHandler("orBetweenDate")}
           />
-          <label
-            className="checkbox"
-            htmlFor="checkbox5"
-          >
-            Birthday between 1990-02-21 and 1995-02-21 OR between and 1995-02-21
+          <label className="checkbox" htmlFor="checkbox5">
+            Birthday between 1990-02-21 and 1995-02-21 OR between 1990-02-21 and
+            1995-02-21
           </label>
         </div>
       </form>
