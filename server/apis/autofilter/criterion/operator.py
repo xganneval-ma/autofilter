@@ -21,7 +21,7 @@ class Operator(Criterion):
     def execute(self, *args, **kwargs) -> Any:
         field = self.field.execute(*args, **kwargs)
         value = self.value.execute(*args, **kwargs)
-        return self._execute(value, field)
+        return self._execute(field, value)
 
 
 @is_operator("bool")
@@ -75,3 +75,30 @@ class Like(Operator):
             return value[1:] in field
         if value.startswith("%"):
             return value[0:-1] in field
+
+
+
+@is_operator("bool")
+class Between(Criterion):
+    type = "Btw"
+
+    def __init__(self, field, left_value, right_value):
+        self.field = field
+        self.left_value = left_value
+        self.right_value = right_value
+
+    @classmethod
+    def from_node(cls, node, operators):
+        field = cls.init_child(node.args[0], operators)
+        left_value = cls.init_child(node.args[1], operators)
+        right_value = cls.init_child(node.args[2], operators)
+        return cls(field, left_value, right_value)
+
+    def execute(self, *args, **kwargs) -> Any:
+        field = self.field.execute(*args, **kwargs)
+        left_value = self.left_value.execute(*args, **kwargs)
+        right_value = self.right_value.execute(*args, **kwargs)
+        return self._execute(field, left_value, right_value, *args, **kwargs)
+
+    def _execute(self, field, left_value, right_value, *args, **kwargs):
+        return left_value <= field <= right_value
