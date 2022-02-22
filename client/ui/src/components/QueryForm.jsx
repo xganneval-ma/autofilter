@@ -22,7 +22,7 @@ function QueryForm({ updateData }) {
         query = `Btw(birthdate, '1990-02-21', '1995-02-21')`;
         break;
       case "orBetweenDate":
-        query = `Or(Btw(birthdate, '1990-02-21', '1995-02-21'), Btw(birthdate, '1990-02-21', '1995-02-21'))`;
+        query = `Or(Btw(birthdate, '1990-02-21', '1995-02-21'), Btw(birthdate, '2000-02-21', '2005-02-21'))`;
         break;
       default:
         query = "";
@@ -87,7 +87,7 @@ function QueryForm({ updateData }) {
             checked={currentChecked === "betweenDate"}
           />
           <label className="checkbox" htmlFor="checkbox4">
-            Birthday between 1990-02-21 and 1995-02-21
+            Birthdate between 1990-02-21 and 1995-02-21
           </label>
         </div>
         <div>
@@ -99,8 +99,8 @@ function QueryForm({ updateData }) {
             onClick={() => clickHandler("orBetweenDate")}
           />
           <label className="checkbox" htmlFor="checkbox5">
-            Birthday between 1990-02-21 and 1995-02-21 OR between 1990-02-21 and
-            1995-02-21
+            Birthdate between 1990-02-21 and 1995-02-21 OR between 2000-02-21
+            and 2005-02-21
           </label>
         </div>
       </form>
