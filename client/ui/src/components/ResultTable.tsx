@@ -5,6 +5,8 @@ interface ResultTableProps {
 }
 
 function ResultTable({persons}: ResultTableProps) {
+    if (!persons) return null;
+
     return(
         <table className="table">
             <thead>
