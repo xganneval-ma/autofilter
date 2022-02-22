@@ -1,10 +1,10 @@
 version: '3.4'
 services:
   app:
-    container_name: autofilter
+    container_name: autofilter_server
     build:
       context: .
     volumes:
-      - .:/home/autofilter
-    command: uvicorn autofilter.adapters.create_app:app --host 0.0.0.0 --port 9600
+      - .:/home/autofilter_server
+    command: uvicorn runserver:app --host 0.0.0.0 --port 8000
     network_mode: "host"
