@@ -13,7 +13,7 @@ export interface Person {
     birthdate: string;
     gender: {
         id: number;
-        value: 'Female' | 'Male';
+        value: 'Female' | 'Male' | 'Other';
     };
     email: Contact;
     cellphones: Contact[];

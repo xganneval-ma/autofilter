@@ -1,7 +1,7 @@
 import {Person} from './../types/Person'
 
 interface ResultTableProps {
-    persons: Person[] | [];
+    persons: Person[] | null;
 }
 
 function ResultTable({persons}: ResultTableProps) {
